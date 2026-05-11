@@ -1,0 +1,35 @@
+{
+  "name": "selenium-playwright-cucumber-migration",
+  "version": "4.0.0",
+  "description": "Selenium to Playwright + Cucumber Migration Toolkit",
+  "type": "module",
+  "scripts": {
+    "migrate": "node scripts/migrate.js",
+    "migrate:status": "node scripts/migrate.js status",
+    "migrate:force": "node scripts/migrate.js force",
+    
+    "verify": "node scripts/verify.js",
+    "verify:file": "node scripts/verify.js file",
+    
+    "auth:setup": "node scripts/auth-setup.js interactive",
+    "auth:setup:headless": "node scripts/auth-setup.js headless",
+    "auth:check": "node scripts/auth-setup.js check",
+    "auth:clear": "node scripts/auth-setup.js clear",
+    
+    "test": "cucumber-js",
+    "test:headed": "HEADED=true cucumber-js",
+    "test:debug": "PWDEBUG=1 cucumber-js",
+    "test:tags": "cucumber-js --tags",
+    "report": "npx playwright show-report"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.3.0",
+    "@playwright/test": "^1.40.0",
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.2",
+    "dotenv": "^16.3.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
