@@ -69,58 +69,53 @@ These common folders are skipped when detecting modules:
 
 ## Quick Start
 
-### 1. Setup
-```bash
-# Copy your ENTIRE Java repo to _source-java/
-cp -r /path/to/java-selenium-repo/* _source-java/
+### Option 1: Interactive Setup (Recommended)
 
-# Install dependencies
-npm install
-
-# Install Playwright browsers
-npx playwright install chromium
+**Windows:**
+```batch
+start.bat
 ```
 
-### 2. Generate Skeletons
+**Linux/Mac:**
 ```bash
+chmod +x start.sh
+./start.sh
+```
+
+The setup wizard will:
+1. Ask for your Java source repo path
+2. Copy it to `_source-java/`
+3. Install GitHub Copilot agents to `.github/`
+4. Install npm dependencies
+5. Install Playwright browsers
+6. Generate TypeScript skeletons
+
+### Option 2: Manual Setup
+
+```bash
+# 1. Copy your ENTIRE Java repo to _source-java/
+cp -r /path/to/java-selenium-repo/* _source-java/
+
+# 2. Copy agents to .github folder
+cp -r agents/* .github/agents/
+mkdir -p .github/copilot/agents
+cp -r agents/* .github/copilot/agents/
+
+# 3. Install dependencies
+npm install
+
+# 4. Install Playwright browsers
+npx playwright install chromium
+
+# 5. Generate skeletons
 npm run migrate
 ```
 
-This scans `_source-java/` and creates TypeScript skeletons for:
-- Page Objects → `src/pages/`
-- Step Definitions → `src/steps/`
-- Feature Files → `features/`
-- Utilities → `src/utils/`
-- Config files → `src/config/`
-- Helper classes → `src/helpers/`
+### Start Conversion
 
-### 3. Start Conversion
 In VS Code with GitHub Copilot:
 ```
 @pw-orchestrator start
-```
-
-The orchestrator will:
-1. Pick the first unconverted file
-2. Convert it (Java → TypeScript)
-3. Save the file
-4. Run CoVe verification
-5. Fix any issues
-6. Move to next file
-
-### 4. Run Tests
-```bash
-# Setup authentication (if needed)
-npm run auth:setup
-
-# Run all tests
-npm test
-
-# Run specific feature
-npm test -- --tags "@smoke"
-
-# Run headed (visible browser)
-npm run test:headed
 ```
 
 ## Commands
